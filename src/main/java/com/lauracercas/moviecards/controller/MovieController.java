@@ -25,10 +25,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //@Controller
 @RestController
 public class MovieController {
+
+    private static final Logger logger = LoggerFactory.getLogger(MovieController.class);
 
     // private final MovieService movieService;
     // public MovieController(MovieService movieService) {
@@ -55,6 +59,7 @@ public class MovieController {
     // }
     @PostMapping("/movies")
     public void newMovie(@RequestBody Movie movie) {
+        logger.info("Received POST request: " + movie);
         movieService.save(movie);
     }
 
